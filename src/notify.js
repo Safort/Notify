@@ -1,4 +1,4 @@
-/* Notify v0.1.0 */
+/* Notify v0.1.1 */
 
 class Notify {
   constructor(selector, options) {
@@ -77,9 +77,7 @@ class Notify {
     el.classList.add('notify--closing');
 
     setTimeout(() => {
-      // debugger;
       this.el.removeChild(el);
-      // console.log(this.notifyList[sel]);
       if (this.notifyList[sel].timeout) { 
         clearTimeout(this.notifyList[sel].timeout);
       }

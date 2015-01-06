@@ -10,11 +10,9 @@ var srcmaps = require('gulp-sourcemaps');
 gulp.task('default', function() {
   gulp.run('js');
   gulp.run('styles');
-  // gulp.run('html');
 
   gulp.watch('src/notify.js', ['js']);
   gulp.watch('src/notify.styl', ['styles']);
-  // gulp.watch('src/*.html', ['html']);
 });
 
 gulp.task('js', function() {
@@ -34,8 +32,3 @@ gulp.task('styles', function() {
       .pipe(srcmaps.write())
       .pipe(gulp.dest('build'));
 });
-
-// gulp.task('html', function() {
-//   gulp.src('src/index.html')
-//       .pipe(gulp.dest('examples'));
-// });
