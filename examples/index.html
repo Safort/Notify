@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Notify</title>
+  <link rel="stylesheet" href="../build/notify.css">
+  <script src="../build/notify.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      margin: 0 auto;
+      border: 1px solid;
+      width: 1000px;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="notify.add(this.value)" value="QWERTY">Добавить</button>
+
+  <div class="notify"></div>
+
+  <script>
+    // var notify = new Notify('.notify', {order: 'reverse', closingDelay: 5000});
+    // var notify = new Notify('.notify', {closingDelay: 5000});
+    var notify = new Notify('.notify', {});
+
+    notify.add('text')
+          .add('text 2')
+          .add('text 3')
+          .add('text 4')
+          .add('text 5');
+  </script>
+</body>
+</html>

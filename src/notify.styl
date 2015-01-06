@@ -1,0 +1,110 @@
+
+.notify {
+  position: fixed;
+  left: 5px;
+  // right: 5px;
+  bottom: 5px;
+  // top: 5px;
+
+  width: 250px;
+  transition: all 0.4s ease;
+
+  &__item {
+    animation: opening_animation 0.5s;
+    -webkit-animation: opening_animation 0.5s;
+
+    display: flex;
+    overflow: hidden;
+
+    margin-bottom: 1px;
+    opacity: .9;
+    padding: 5px 5px;
+    background-color: #44f;
+
+    color: white;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__content {
+    margin-left: 5px;
+    word-wrap: break-word;
+    max-width: 212px;
+  }
+
+
+  &__close {
+    transition: all 0.3s ease;
+    background-color: #55f;
+    display: inline-block;
+
+    border: 1px solid #88a;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    
+    cursor: pointer;
+
+    -moz-user-select: none;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bolder;
+    color: #faa;
+    
+    &:hover {
+      border: 1px solid #ccc;
+      color: #fcc;
+    }
+    &:active {
+      border: 1px solid #fff;
+      color: #fff;
+    }
+  }
+
+  &--closing {
+    // animation: closing_animation 0.5s;
+    // -webkit-animation: closing_animation 0.5s;
+
+    transition: all 0.4s ease;
+    opacity: .0;
+    padding: 0 5px;
+    height: 0;
+    margin: 0;
+    visibility: hidden;
+  }
+}
+
+
+
+
+
+@-webkit-keyframes opening_animation {
+  from {
+    padding: 1px 5px;
+    background-color: #44f;
+    margin-bottom: 1px;
+    opacity: .3;
+  }
+  to {
+    opacity: .9;
+    padding: 5px 5px;
+    background-color: #44f;
+  }
+}
+
+@keyframes opening_animation {
+  from {
+    padding: 1px 5px;
+    background-color: #44f;
+    margin-bottom: 1px;
+    opacity: .3;
+  }
+  to {
+    opacity: .9;
+    padding: 5px 5px;
+    background-color: #44f;
+  }
+}
