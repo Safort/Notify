@@ -1,4 +1,4 @@
-/* Notify v0.1.2 */
+/* Notify v0.2.0 */
 
 class Notify {
   constructor(selector, options = {}) {
