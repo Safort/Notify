@@ -8,8 +8,7 @@
   transition: all 0.4s ease;
 
   &__item {
-    animation: opening_animation 0.5s;
-    -webkit-animation: opening_animation 0.5s;
+    animation: opening 0.5s;
 
     display: flex;
     overflow: hidden;
@@ -70,36 +69,93 @@
     margin: 0;
     visibility: hidden;
   }
+  
+
+
+
+  &__default {
+    background-color: #55f;
+  }
+  &__default &__close {
+    background-color: #55f - #111;
+    border-color: #55f + #666;
+    color: #55f + #666;
+  }
+  &__default &__close:hover {
+    border-color: #55f + #777;
+    color: #55f + #777;
+  }
+  &__default &__close:active {
+    border-color: #55f + #aaa;
+    color: #55f + #aaa;
+  }
+
+
+  &__success {
+    background-color: #5f5;
+  }
+  &__success &__close {
+    background-color: #5f5 - #111;
+    border-color: #5f5 + #555;
+    color: #5f5 + #777;
+  }
+  &__success &__close:hover {
+    border-color: #5f5 + #777;
+    color: #5f5 + #888;
+  }
+  &__success &__close:active {
+    border-color: #5f5 + #aaa;
+    color: #5f5 + #aaa;
+  }
+  
+
+  &__warning {
+    background-color: #fa0;
+  }
+  &__warning &__close {
+    background-color: #fa0 - #111;
+    border-color: #fa0 + #333;
+    color: #fa0 + #333;
+  }
+  &__warning &__close:hover {
+    border-color: #fa0 + #444;
+    color: #fa0 + #444;
+  }
+  &__warning &__close:active {
+    border-color: #fa0 + #777;
+    color: #fa0 + #888;
+  }
+  
+
+  &__error {
+    background-color: #f44;
+  }
+  &__error &__close {
+    background-color: #f44 - #111;
+    border-color: #f44 + #444;
+    color: #f44 + #555;
+  }
+  &__error &__close:hover {
+    border-color: #f44 + #666;
+    color: #f44 + #777;
+  }
+  &__error &__close:active {
+    border-color: #f44 + #aaa;
+    color: #f44 + #aaa;
+  }
 }
 
 
 
 
-
-@-webkit-keyframes opening_animation {
+@keyframes opening {
   from {
     padding: 1px 5px;
-    background-color: #44f;
     margin-bottom: 1px;
     opacity: .3;
   }
   to {
     opacity: .9;
     padding: 5px 5px;
-    background-color: #44f;
-  }
-}
-
-@keyframes opening_animation {
-  from {
-    padding: 1px 5px;
-    background-color: #44f;
-    margin-bottom: 1px;
-    opacity: .3;
-  }
-  to {
-    opacity: .9;
-    padding: 5px 5px;
-    background-color: #44f;
   }
 }

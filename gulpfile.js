@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 var es6to5 = require('gulp-6to5');
 var stylus = require('gulp-stylus');
 var srcmaps = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
 
 
 gulp.task('default', function() {
@@ -28,6 +29,7 @@ gulp.task('styles', function() {
   gulp.src('src/notify.styl')
       .pipe(srcmaps.init())
         .pipe(stylus())
+        .pipe(autoprefixer({browsers: ['last 20 version']}))
         .pipe(rename('notify.css'))
       .pipe(srcmaps.write())
       .pipe(gulp.dest('build'));
