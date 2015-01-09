@@ -10,7 +10,6 @@
       margin: 0;
       padding: 0;
     }
-
     .main {
       margin: 0 auto;
       border: 1px solid;
@@ -20,21 +19,23 @@
   </style>
 </head>
 <body>
-
-  <button onclick="notify.add(this.value)" value="text">Add notification</button>
+  <input type="text" value="some text">
+  <button onclick="notify.add(document.querySelector('input').value, {type: 'default'})" value="text">Default</button>
+  <button onclick="notify.add(document.querySelector('input').value, {type: 'success'})" value="text">Success</button>
+  <button onclick="notify.add(document.querySelector('input').value, {type: 'warning'})" value="text">Warning</button>
+  <button onclick="notify.add(document.querySelector('input').value, {type: 'error'})" value="text">Error</button>
 
   <div class="notify"></div>
 
   <script>
     // var notify = new Notify('.notify', {order: 'reverse', closingDelay: 5000});
-    // var notify = new Notify('.notify', {closingDelay: 5000});
-    var notify = new Notify('.notify', {});
+    var notify = new Notify('.notify', {closingDelay: 2000});
+    // var notify = new Notify('.notify');
 
-    notify.add('text')
-          .add('text 2')
-          .add('text 3')
-          .add('text 4')
-          .add('text 5');
+    notify.add('Just text')
+          .add('Success', {type: 'success'})
+          .add('Warning', {type: 'warning'})
+          .add('Error', {type: 'error'});
   </script>
 </body>
 </html>
