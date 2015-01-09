@@ -1,7 +1,7 @@
 /* Notify v0.1.1 */
 
 class Notify {
-  constructor(selector, options) {
+  constructor(selector, options = {}) {
     this.el = this.getEl(selector);
     this.order = options.order || 'default';
     this.closingDelay = parseInt(options.closingDelay) || 0;
@@ -11,8 +11,15 @@ class Notify {
     this.notifyList = {};
 
     this.orderConfig = {
-      'default': 'beforeEnd',
-      'reverse': 'afterBegin'
+      default: 'beforeEnd',
+      reverse: 'afterBegin'
+    };
+
+    this.notifyTypes = {
+      error: 'notify__error',
+      warning: 'notify__warning',
+      success: 'notify__success',
+      default: 'notify__default'
     };
 
     this.el.addEventListener('click', (e) => {
@@ -44,7 +51,7 @@ class Notify {
     }
   }
 
-  setClosingDelay(item) {
+  setClosingDelay(item, closingDelay = this.closingDelay) {
     if (this.closingDelay) {
       var timeout = setTimeout(() => {
         this.close(item);
@@ -55,17 +62,25 @@ class Notify {
   }
 
 
-  add(text) {
+  add(text, options = {}) {
     var that = this;
     var timeout;
     var i = ++this.itemsCounter;
     var link = this.el.querySelector(`#notify_${i}`);
+    var itemClasses = 'notify__item';
+
+    if (options.type) {
+      itemClasses += " " + this.notifyTypes[options.type];
+    } else {
+      itemClasses += " " + this.notifyTypes['default'];
+    }
+
     this.el.insertAdjacentHTML(this.orderConfig[this.order],
-      `<div class="notify__item" id="notify_${i}">
+      `<div class="${itemClasses}" id="notify_${i}">
           <div class="notify__close">×</div>
           <div class="notify__content">${text}</div>
       </div>`);
-    timeout = this.setClosingDelay(`#notify_${i}`);
+    timeout = this.setClosingDelay(`#notify_${i}`, options.closingDelay || this.closingDelay);
     that.notifyList[`#notify_${i}`] = {timeout, link};
 
     return this;
@@ -74,14 +89,18 @@ class Notify {
 
   close(sel) {
     var el = this.getEl(sel);
+
     el.classList.add('notify--closing');
 
     setTimeout(() => {
       this.el.removeChild(el);
+
       if (this.notifyList[sel].timeout) { 
         clearTimeout(this.notifyList[sel].timeout);
       }
+
       delete this.notifyList[sel];
+
       if (Object.keys(this.notifyList).length == 0) {
         this.itemsCounter = 0;
       }
