@@ -93,20 +93,31 @@ class Notify {
     el.classList.add('notify--closing');
 
     setTimeout(() => {
-      this.el.removeChild(el);
+      if (this.notifyList[sel]) {
+        this.el.removeChild(el);
 
-      if (this.notifyList[sel].timeout) { 
-        clearTimeout(this.notifyList[sel].timeout);
-      }
+        if (this.notifyList[sel].timeout) { 
+          clearTimeout(this.notifyList[sel].timeout);
+        }
 
-      delete this.notifyList[sel];
+        delete this.notifyList[sel];
 
-      if (Object.keys(this.notifyList).length == 0) {
-        this.itemsCounter = 0;
+        if (Object.keys(this.notifyList).length == 0) {
+          this.itemsCounter = 0;
+        }
       }
     }, this.removingDelay);
 
     return this;
   }
 
+
+  closeAll() {
+    var self = this;
+    var items = this.el.querySelectorAll('.notify__item');
+
+    Array.prototype.forEach.call(items, (item) => {
+      self.close('#' + item.id);
+    });
+  }
 }
