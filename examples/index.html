@@ -24,14 +24,16 @@
   <button onclick="notify.add(document.querySelector('input').value, {type: 'success'})" value="text">Success</button>
   <button onclick="notify.add(document.querySelector('input').value, {type: 'warning'})" value="text">Warning</button>
   <button onclick="notify.add(document.querySelector('input').value, {type: 'error'})" value="text">Error</button>
+  <button onclick="notify.closeFirst()" value="text">CloseFirst</button>
+  <button onclick="notify.closeLast()" value="text">CloseLast</button>
   <button onclick="notify.closeAll()" value="text">CloseAll</button>
 
   <div class="notify"></div>
 
   <script>
     // var notify = new Notify('.notify', {order: 'reverse', closingDelay: 5000});
-    var notify = new Notify('.notify', {closingDelay: 3000});
-    // var notify = new Notify('.notify');
+    // var notify = new Notify('.notify', {closingDelay: 3000});
+    var notify = new Notify('.notify');
 
     notify.add('Just text')
           .add('Success', {type: 'success'})
