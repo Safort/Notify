@@ -63,7 +63,6 @@ class Notify {
 
 
   add(text, options = {}) {
-    var that = this;
     var timeout;
     var i = ++this.itemsCounter;
     var link = this.el.querySelector(`#notify_${i}`);
@@ -81,7 +80,7 @@ class Notify {
           <div class="notify__content">${text}</div>
       </div>`);
     timeout = this.setClosingDelay(`#notify_${i}`, options.closingDelay || this.closingDelay);
-    that.notifyList[`#notify_${i}`] = {timeout, link};
+    this.notifyList[`#notify_${i}`] = {timeout, link};
 
     return this;
   }
@@ -133,6 +132,8 @@ class Notify {
   closeLast() {
     var item = this.el.querySelector('.notify__item:last-child');
 
-    this.close('#' + item.id);
+    if (item) {
+      this.close('#' + item.id);
+    }
   }
 }
