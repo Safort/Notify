@@ -120,4 +120,19 @@ class Notify {
       self.close('#' + item.id);
     });
   }
+
+
+  closeFirst() {
+    var item = this.el.querySelector(':first-child');
+
+    if (item) {
+      this.close('#' + item.id);
+    }
+  }
+
+  closeLast() {
+    var item = this.el.querySelector('.notify__item:last-child');
+
+    this.close('#' + item.id);
+  }
 }
