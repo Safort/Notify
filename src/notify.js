@@ -23,7 +23,8 @@ class Notify {
     };
 
     this.el.addEventListener('click', (e) => {
-      var classes = e.target.classList;
+      let classes = e.target.classList;
+
       if (classes.contains('notify__close')) {
         this.close('#' + e.target.parentNode.id);
       }
@@ -53,7 +54,7 @@ class Notify {
 
   setClosingDelay(item, closingDelay = this.closingDelay) {
     if (this.closingDelay) {
-      var timeout = setTimeout(() => {
+      let timeout = setTimeout(() => {
         this.close(item);
       }, this.closingDelay);
 
@@ -63,10 +64,10 @@ class Notify {
 
 
   add(text, options = {}) {
-    var timeout;
-    var i = ++this.itemsCounter;
-    var link = this.el.querySelector(`#notify_${i}`);
-    var itemClasses = 'notify__item';
+    let timeout;
+    let i = ++this.itemsCounter;
+    let link = this.el.querySelector(`#notify_${i}`);
+    let itemClasses = 'notify__item';
 
     if (options.type) {
       itemClasses += " " + this.notifyTypes[options.type];
@@ -87,7 +88,7 @@ class Notify {
 
 
   close(sel) {
-    var el = this.getEl(sel);
+    let el = this.getEl(sel);
 
     el.classList.add('notify--closing');
 
@@ -112,8 +113,8 @@ class Notify {
 
 
   closeAll() {
-    var self = this;
-    var items = this.el.querySelectorAll('.notify__item');
+    let self = this;
+    let items = this.el.querySelectorAll('.notify__item');
 
     Array.prototype.forEach.call(items, (item) => {
       self.close('#' + item.id);
@@ -122,7 +123,7 @@ class Notify {
 
 
   closeFirst() {
-    var item = this.el.querySelector(':first-child');
+    let item = this.el.querySelector(':first-child');
 
     if (item) {
       this.close('#' + item.id);
@@ -130,7 +131,7 @@ class Notify {
   }
 
   closeLast() {
-    var item = this.el.querySelector('.notify__item:last-child');
+    let item = this.el.querySelector('.notify__item:last-child');
 
     if (item) {
       this.close('#' + item.id);
