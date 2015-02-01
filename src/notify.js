@@ -1,6 +1,13 @@
 /* Notify v0.2.0 */
 
 class Notify {
+
+  /**
+   * @constructor
+   * @this {Steerer}
+   * @param  {string} selector element selector
+   * @param  {Object} options  options
+   */
   constructor(selector, options = {}) {
     this.el = this.getEl(selector);
     this.order = options.order || 'default';
@@ -44,6 +51,11 @@ class Notify {
   }
 
 
+  /**
+   * get element
+   * @param  {string|object} arg get element selector
+   * @return {object}
+   */
   getEl(arg) {
     if (typeof arg == 'string') {
       return document.querySelector(arg);
@@ -52,6 +64,12 @@ class Notify {
     }
   }
 
+
+  /**
+   * set delay for closing notification
+   * @param {string} item         selector of notification
+   * @param {number} closingDelay delay
+   */
   setClosingDelay(item, closingDelay = this.closingDelay) {
     if (this.closingDelay) {
       let timeout = setTimeout(() => {
@@ -63,6 +81,11 @@ class Notify {
   }
 
 
+  /**
+   * add notification
+   * @param {string} text    notification text
+   * @param {Object} options options
+   */
   add(text, options = {}) {
     let timeout;
     let i = ++this.itemsCounter;
@@ -87,6 +110,10 @@ class Notify {
   }
 
 
+  /**
+   * close notification
+   * @param {string} sel selector
+   */
   close(sel) {
     let el = this.getEl(sel);
 
@@ -112,6 +139,9 @@ class Notify {
   }
 
 
+  /**
+   * close all notification
+   */
   closeAll() {
     let self = this;
     let items = this.el.querySelectorAll('.notify__item');
@@ -122,6 +152,9 @@ class Notify {
   }
 
 
+  /**
+   * close first notification
+   */
   closeFirst() {
     let item = this.el.querySelector(':first-child');
 
@@ -130,6 +163,10 @@ class Notify {
     }
   }
 
+
+  /**
+   * close last notofication
+   */
   closeLast() {
     let item = this.el.querySelector('.notify__item:last-child');
 
