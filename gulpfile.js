@@ -16,7 +16,6 @@ gulp.task('default', function() {
 
   gulp.watch('src/notify.js', ['js', 'packageJson']);
   gulp.watch('src/notify.styl', ['styles']);
-  // gulp.watch('package.json', []);
 });
 
 
