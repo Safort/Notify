@@ -1,3 +1,4 @@
+var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
 var rename = require('gulp-rename');
@@ -11,10 +12,23 @@ var autoprefixer = require('gulp-autoprefixer');
 gulp.task('default', function() {
   gulp.run('js');
   gulp.run('styles');
+  gulp.run('packageJson');
 
-  gulp.watch('src/notify.js', ['js']);
+  gulp.watch('src/notify.js', ['js', 'packageJson']);
   gulp.watch('src/notify.styl', ['styles']);
+  // gulp.watch('package.json', []);
 });
+
+
+gulp.task('packageJson', function() {
+  var version = fs.readFileSync('src/notify.js', 'utf-8').match(/\/\* Notify v([0-9].[0-9].[0-9a-z-]) \*\//)[1];
+  var packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+
+  packageJson.version = version;
+
+  fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2));
+});
+
 
 gulp.task('js', function() {
   gulp.src('src/notify.js')
@@ -24,6 +38,7 @@ gulp.task('js', function() {
       .pipe(srcmaps.write())
       .pipe(gulp.dest('build'));
 });
+
 
 gulp.task('styles', function() {
   gulp.src('src/notify.styl')
