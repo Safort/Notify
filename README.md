@@ -1,3 +1,3 @@
 Notify
 =======
-Just another notification script
+Just another notification library
