@@ -1,9 +1,10 @@
 var fs = require('fs');
 var path = require('path');
+
 var gulp = require('gulp');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
-var es6to5 = require('gulp-6to5');
+var babel = require('gulp-babel');
 var stylus = require('gulp-stylus');
 var srcmaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
@@ -32,7 +33,7 @@ gulp.task('packageJson', function() {
 gulp.task('js', function() {
   gulp.src('src/notify.js')
       .pipe(srcmaps.init())
-        .pipe(es6to5())
+        .pipe(babel())
         .pipe(rename('notify.js'))
       .pipe(srcmaps.write())
       .pipe(gulp.dest('build'));
