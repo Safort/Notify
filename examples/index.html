@@ -20,10 +20,10 @@
 </head>
 <body>
   <input type="text" value="some text">
-  <button onclick="notify.add(document.querySelector('input').value, {type: 'default'})" value="text">Default</button>
-  <button onclick="notify.add(document.querySelector('input').value, {type: 'success'})" value="text">Success</button>
-  <button onclick="notify.add(document.querySelector('input').value, {type: 'warning'})" value="text">Warning</button>
-  <button onclick="notify.add(document.querySelector('input').value, {type: 'error'})" value="text">Error</button>
+  <button onclick="notify.add({title: document.querySelector('input').value, type: 'default'})" value="text">Default</button>
+  <button onclick="notify.add({title: document.querySelector('input').value, type: 'success'})" value="text">Success</button>
+  <button onclick="notify.add({title: document.querySelector('input').value, type: 'warning'})" value="text">Warning</button>
+  <button onclick="notify.add({title: document.querySelector('input').value, type: 'error'})" value="text">Error</button>
   <button onclick="notify.closeFirst()" value="text">CloseFirst</button>
   <button onclick="notify.closeLast()" value="text">CloseLast</button>
   <button onclick="notify.closeAll()" value="text">CloseAll</button>
@@ -35,10 +35,25 @@
     // var notify = new Notify('.notify', {closingDelay: 3000});
     var notify = new Notify('.notify');
 
-    notify.add('Just text')
-          .add('Success', {type: 'success'})
-          .add('Warning', {type: 'warning'})
-          .add('Error', {type: 'error'});
+    // notify.add({title: 'Just text'})
+    // notify.add({title: 'Just text', closingDelay: 1000})
+    notify.add({title: 'Just text', content: 'ddd eee fff aaa uuu lll ttt', closingDelay: 1000})
+          .add({title: 'Success', content: 'sssssss aef wrga rteeeeeeeeext just teeeeeeeeext', type: 'success'})
+          .add({title: 'Success', content: 'cdsd', type: 'success'})
+          .add({title: 'Warning', type: 'warning', closingDelay: 2000})
+          .add({title: 'Error', type: 'error'});
+
+
+          // сделал вторым параметром text 
+          // fix bug with closing elements 
   </script>
 </body>
 </html>
+
+<!-- <div id="notify_1" class="notify__item notify__default">
+  <header class="notify__header">
+    <div class="notify__close">×</div>
+    <div class="notify__title">Just text</div>
+  </header>
+  <div class="notify__content">teeeeeeeeext</div>
+</div> -->
