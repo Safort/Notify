@@ -1,4 +1,4 @@
-/* Notify v0.2.0 */
+/* Notify v0.3.0 */
 
 class Notify {
 
@@ -33,6 +33,7 @@ class Notify {
       let classes = e.target.classList;
 
       if (classes.contains('notify__close')) {
+        // console.log(e.target.parentNode.parentNode);
         this.close('#' + e.target.parentNode.id);
       }
     }, false);
@@ -41,13 +42,13 @@ class Notify {
       Object.keys(this.notifyList).forEach((e) => {
         clearTimeout(this.notifyList[e].timeout);
       });
-    }, true);
+    }, false);
 
     this.el.addEventListener('mouseout', (e) => {
       Object.keys(this.notifyList).forEach((item) => {
-        this.notifyList[item].timeout = this.setClosingDelay(item);
+        this.notifyList[item].timeout = this.setClosingDelay(item, this.notifyList[item].closingDelay);
       });
-    }, true);
+    }, false);
   }
 
 
@@ -71,10 +72,10 @@ class Notify {
    * @param {number} closingDelay delay
    */
   setClosingDelay(item, closingDelay = this.closingDelay) {
-    if (this.closingDelay) {
+    if (closingDelay) {
       let timeout = setTimeout(() => {
         this.close(item);
-      }, this.closingDelay);
+      }, closingDelay);
 
       return timeout;
     }
@@ -86,25 +87,23 @@ class Notify {
    * @param {string} text    notification text
    * @param {Object} options options
    */
-  add(text, options = {}) {
+  add(options = {}) {
     let timeout;
     let i = ++this.itemsCounter;
-    let link = this.el.querySelector(`#notify_${i}`);
-    let itemClasses = 'notify__item';
+    let {title, content, closingDelay = this.closingDelay, type = 'default'} = options;
 
-    if (options.type) {
-      itemClasses += " " + this.notifyTypes[options.type];
-    } else {
-      itemClasses += " " + this.notifyTypes['default'];
-    }
+    title = !title ? '' : `<div class="notify__title">${title}</div>`;
+    content = !content || 
+              typeof content == 'object' ? '' : `<div class="notify__content">${content}</div>`;
 
     this.el.insertAdjacentHTML(this.orderConfig[this.order],
-      `<div class="${itemClasses}" id="notify_${i}">
+      `<div class="notify__item ${this.notifyTypes[type]}" id="notify_${i}">
           <div class="notify__close">×</div>
-          <div class="notify__content">${text}</div>
+          ${title}
+          ${content}
       </div>`);
-    timeout = this.setClosingDelay(`#notify_${i}`, options.closingDelay || this.closingDelay);
-    this.notifyList[`#notify_${i}`] = {timeout, link};
+    timeout = this.setClosingDelay(`#notify_${i}`, closingDelay);
+    this.notifyList[`#notify_${i}`] = {timeout, closingDelay};
 
     return this;
   }

@@ -11,6 +11,7 @@
     animation: opening 0.5s;
 
     display: flex;
+    flex-wrap: wrap;
     overflow: hidden;
 
     margin-bottom: 1px;
@@ -25,8 +26,15 @@
     }
   }
 
-  &__content {
+  &__title {
     margin-left: 5px;
+    word-wrap: break-word;
+    width: 212px;
+    text-decoration: underline;
+  }
+
+  &__content {
+    margin-left: 27px;
     word-wrap: break-word;
     max-width: 212px;
   }
