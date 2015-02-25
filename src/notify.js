@@ -145,9 +145,7 @@ class Notify {
     let self = this;
     let items = this.el.querySelectorAll('.notify__item');
 
-    Array.from(items).forEach(item => {
-      self.close('#' + item.id);
-    });
+    Array.from(items).forEach( item => self.close('#' + item.id) );
   }
 
 
