@@ -1,4 +1,4 @@
-/* Notify v0.3.0 */
+/* Notify v0.3.1 */
 
 class Notify {
 
