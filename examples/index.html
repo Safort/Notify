@@ -31,29 +31,12 @@
   <div class="notify"></div>
 
   <script>
-    // var notify = new Notify('.notify', {order: 'reverse', closingDelay: 5000});
-    // var notify = new Notify('.notify', {closingDelay: 3000});
     var notify = new Notify('.notify');
 
-    // notify.add({title: 'Just text'})
-    // notify.add({title: 'Just text', closingDelay: 1000})
-    notify.add({title: 'Just text', content: 'ddd eee fff aaa uuu lll ttt', closingDelay: 1000})
-          .add({title: 'Success', content: 'sssssss aef wrga rteeeeeeeeext just teeeeeeeeext', type: 'success'})
-          .add({title: 'Success', content: 'cdsd', type: 'success'})
-          .add({title: 'Warning', type: 'warning', closingDelay: 2000})
-          .add({title: 'Error', type: 'error'});
-
-
-          // сделал вторым параметром text 
-          // fix bug with closing elements 
+    notify.add({title: 'First Title', content: 'closing after 1 sec', closingDelay: 1000})
+          .add({title: 'Second Title', content: 'cdsd', type: 'success'})
+          .add({title: 'Third Title', content: 'closing after 2 sec', type: 'warning', closingDelay: 2000})
+          .add({title: 'Fourth Title without content ', type: 'error'});
   </script>
 </body>
 </html>
-
-<!-- <div id="notify_1" class="notify__item notify__default">
-  <header class="notify__header">
-    <div class="notify__close">×</div>
-    <div class="notify__title">Just text</div>
-  </header>
-  <div class="notify__content">teeeeeeeeext</div>
-</div> -->
