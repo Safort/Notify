@@ -7,31 +7,22 @@ var concat = require('gulp-concat');
 var babel = require('gulp-babel');
 var stylus = require('gulp-stylus');
 var srcmaps = require('gulp-sourcemaps');
+var plumber = require('gulp-plumber');
 var autoprefixer = require('gulp-autoprefixer');
 
 
 gulp.task('default', function() {
   gulp.run('js');
   gulp.run('styles');
-  gulp.run('packageJson');
 
-  gulp.watch('src/notify.js', ['js', 'packageJson']);
+  gulp.watch('src/notify.js', ['js']);
   gulp.watch('src/notify.styl', ['styles']);
-});
-
-
-gulp.task('packageJson', function() {
-  var version = fs.readFileSync('src/notify.js', 'utf-8').match(/\/\* Notify v([0-9].[0-9].[0-9a-z-]) \*\//)[1];
-  var packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
-
-  packageJson.version = version;
-
-  fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2));
 });
 
 
 gulp.task('js', function() {
   gulp.src('src/notify.js')
+      .pipe(plumber())
       .pipe(srcmaps.init())
         .pipe(babel())
         .pipe(rename('notify.js'))
