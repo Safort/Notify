@@ -28,7 +28,7 @@ class Notify {
       default: 'notify__default'
     };
 
-    this.el.addEventListener('click', (e) => {
+    this.el.addEventListener('click', e => {
       let classes = e.target.classList;
 
       if (classes.contains('notify__close')) {
@@ -37,14 +37,14 @@ class Notify {
       }
     }, false);
 
-    this.el.addEventListener('mouseover', (e) => {
-      Object.keys(this.notifyList).forEach((e) => {
+    this.el.addEventListener('mouseover', e => {
+      Object.keys(this.notifyList).forEach(e => {
         clearTimeout(this.notifyList[e].timeout);
       });
     }, false);
 
-    this.el.addEventListener('mouseout', (e) => {
-      Object.keys(this.notifyList).forEach((item) => {
+    this.el.addEventListener('mouseout', e => {
+      Object.keys(this.notifyList).forEach(item => {
         this.notifyList[item].timeout = this.setClosingDelay(item, this.notifyList[item].closingDelay);
       });
     }, false);
