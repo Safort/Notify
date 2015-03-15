@@ -112,7 +112,7 @@ class Notify {
    * close notification
    * @param {string} sel selector
    */
-  close(sel) {
+  close(sel, cb = null) {
     let el = this.getEl(sel);
 
     el.classList.add('notify--closing');
@@ -121,14 +121,16 @@ class Notify {
       if (this.notifyList[sel]) {
         this.el.removeChild(el);
 
-        if (this.notifyList[sel].timeout) { 
+        if (this.notifyList[sel].timeout) {
           clearTimeout(this.notifyList[sel].timeout);
         }
 
         delete this.notifyList[sel];
 
-        if (Object.keys(this.notifyList).length == 0) {
-          this.itemsCounter = 0;
+        this.itemsCounter = Object.keys(this.notifyList).length;
+
+        if (cb) {
+          cb();
         }
       }
     }, this.removingDelay);
@@ -140,22 +142,28 @@ class Notify {
   /**
    * close all notification
    */
-  closeAll() {
+  closeAll(cb) {
     let self = this;
     let items = this.el.querySelectorAll('.notify__item');
 
-    Array.from(items).forEach(item => self.close('#' + item.id) );
+    Array.from(items).forEach((item, i, arr) => {
+      if ((arr.length - i) == 1) {
+        self.close('#' + item.id, cb);
+      } else {
+        self.close('#' + item.id);
+      }
+    });
   }
 
 
   /**
    * close first notification
    */
-  closeFirst() {
+  closeFirst(cb) {
     let item = this.el.querySelector(':first-child');
 
     if (item) {
-      this.close('#' + item.id);
+      this.close('#' + item.id, cb);
     }
   }
 
@@ -163,11 +171,11 @@ class Notify {
   /**
    * close last notofication
    */
-  closeLast() {
+  closeLast(cb) {
     let item = this.el.querySelector('.notify__item:last-child');
 
     if (item) {
-      this.close('#' + item.id);
+      this.close('#' + item.id, cb);
     }
   }
 }

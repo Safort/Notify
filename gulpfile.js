@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 
 var gulp = require('gulp');
+// var mocha = require('gulp-mocha');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var babel = require('gulp-babel');
@@ -14,11 +15,19 @@ var autoprefixer = require('gulp-autoprefixer');
 gulp.task('default', function() {
   gulp.run('js');
   gulp.run('styles');
+  // gulp.run('test');
 
   gulp.watch('src/notify.js', ['js']);
   gulp.watch('src/notify.styl', ['styles']);
+  // gulp.watch('test/test.js', ['test']);
 });
 
+
+// gulp.task('test', function() {
+//   gulp.src('test/test.js')
+//       .pipe(plumber())
+//       .pipe(mocha());
+// });
 
 gulp.task('js', function() {
   gulp.src('src/notify.js')
