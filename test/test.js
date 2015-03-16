@@ -1,24 +1,3 @@
-
-// describe('#indexOf()', function() {
-//   it('should return -1 when the value is not present', function() {
-//     assert.equal(-1, [1,2,3].indexOf(5));
-//     assert.equal(-1, [1,2,3].indexOf(0));
-//   });
-// });
-
-// var arr = [];
-// arr.push('foo');
-// arr.push('bar');
-// expect(arr[0]).to.equal('foo');
-// expect(arr[1]).to.equal('bar');
-
-// var foo = 'bar';
-
-// assert.typeOf(foo, 'string'); // without optional message
-// assert.typeOf(foo, 'string', 'foo is a string'); // with optional message
-// assert.equal(foo, 'bar', 'foo equal `bar`');
-
-
 var assert = chai.assert;
 var expect = chai.expect;
 
@@ -77,4 +56,3 @@ describe('Notify', function() {
   });
 
 });
-  // console.log(notify.itemsCounter);
