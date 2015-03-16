@@ -20,17 +20,18 @@
 </head>
 <body>
   <input type="text" value="some text">
-  <button onclick="notify.add({title: document.querySelector('input').value, type: 'default'})" value="text">Default</button>
-  <button onclick="notify.add({title: document.querySelector('input').value, type: 'success'})" value="text">Success</button>
-  <button onclick="notify.add({title: document.querySelector('input').value, type: 'warning'})" value="text">Warning</button>
-  <button onclick="notify.add({title: document.querySelector('input').value, type: 'error'})" value="text">Error</button>
-  <button onclick="notify.closeFirst()" value="text">CloseFirst</button>
-  <button onclick="notify.closeLast()" value="text">CloseLast</button>
-  <button onclick="notify.closeAll()" value="text">CloseAll</button>
+  <button onclick="notify.add({title: input.value, type: 'default'})" value="text">Default</button>
+  <button onclick="notify.add({title: input.value, type: 'success'})" value="text">Success</button>
+  <button onclick="notify.add({title: input.value, type: 'warning'})" value="text">Warning</button>
+  <button onclick="notify.add({title: input.value, type: 'error'})" value="text">Error</button>
+  <button onclick="notify.closeFirst(() => {console.log('first closed')})" value="text">CloseFirst</button>
+  <button onclick="notify.closeLast(() => {console.log('last closed')})" value="text">CloseLast</button>
+  <button onclick="notify.closeAll(() => {console.log('all closed')})" value="text">CloseAll</button>
 
   <div class="notify"></div>
 
   <script>
+    var input = document.querySelector('input');
     var notify = new Notify('.notify');
 
     notify.add({title: 'First Title', content: 'closing after 1 sec', closingDelay: 1000})
