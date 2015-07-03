@@ -1,6 +1,4 @@
-
 class Notify {
-
   /**
    * @constructor
    * @this {Steerer}
@@ -9,30 +7,26 @@ class Notify {
    */
   constructor(selector, options = {}) {
     this.el = this.getEl(selector);
-    this.order = options.order || 'default';
+    this.order = options.order || 'defaults';
     this.closingDelay = parseInt(options.closingDelay) || 0;
     this.removingDelay = parseInt(options.removingDelay) || 3000;
-
     this.itemsCounter = 0;
     this.notifyList = {};
-
     this.orderConfig = {
-      default: 'beforeEnd',
+      defaults: 'beforeEnd',
       reverse: 'afterBegin'
     };
-
     this.notifyTypes = {
       error: 'notify__error',
       warning: 'notify__warning',
       success: 'notify__success',
-      default: 'notify__default'
+      defaults: 'notify__default'
     };
 
     this.el.addEventListener('click', e => {
       let classes = e.target.classList;
 
       if (classes.contains('notify__close')) {
-        // console.log(e.target.parentNode.parentNode);
         this.close('#' + e.target.parentNode.id);
       }
     }, false);
@@ -89,7 +83,12 @@ class Notify {
   add(options = {}) {
     let timeout;
     let i = ++this.itemsCounter;
-    let {title, content, closingDelay = this.closingDelay, type = 'default'} = options;
+    let {
+      title, 
+      content, 
+      closingDelay = this.closingDelay,
+      type = 'defaults'
+    } = options;
 
     title = !title ? '' : `<div class="notify__title">${title}</div>`;
     content = !content || 
@@ -101,7 +100,9 @@ class Notify {
           ${title}
           ${content}
       </div>`);
+
     timeout = this.setClosingDelay(`#notify_${i}`, closingDelay);
+
     this.notifyList[`#notify_${i}`] = {timeout, closingDelay};
 
     return this;
@@ -130,7 +131,7 @@ class Notify {
         this.itemsCounter = Object.keys(this.notifyList).length;
 
         if (cb) {
-          cb();
+          cb()
         }
       }
     }, this.removingDelay);
