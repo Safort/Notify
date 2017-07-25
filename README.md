@@ -1,9 +1,9 @@
-#Notify
+# Notify
 
 Notify is a litle notification library.
 
 
-###API
+# API
 
 ```js
 var elem = document.querySelector('#notify'); //or only element selector '#notify'
@@ -20,7 +20,7 @@ notify.add({
 ```
 
 
-###TODO
+# TODO
 
   - Write tests
   - Add code comments
